@@ -31,7 +31,7 @@ The idea behind creating this plugin emerged after many players attempted to imp
 
 | Downloads                                         | API       | Downloads                                                                 |
 |---------------------------------------------------|-----------|---------------------------------------------------------------------------|
-| latest version (0.0.1)                       | 5.x       | [GitHub Release](Very soon...)                |
+| latest version (0.0.1)                       | 5.x       | [GitHub Release](https://github.com/xrde4/XNoNickSpace/releases/download/0.1/XNoNickSpace.phar)                |
 <br>
 
 ## 📁 Supported software:
@@ -39,7 +39,7 @@ The idea behind creating this plugin emerged after many players attempted to imp
 
 ## 🔧 How to install XNoNickSpace?
 
-1) [Download](Very soon...) latest stable released version from poggit.
+1) [Download](https://github.com/xrde4/XNoNickSpace/releases/download/0.1/XNoNickSpace.phar) latest stable released version from poggit.
 2) Move dowloaded file to your server **/plugins/** folder.
 3) Restart the server.
 4) Configure the language and protection level in the plugin's config; by default, it will operate at the highest level of protection.
