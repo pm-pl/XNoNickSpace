@@ -27,6 +27,8 @@ use pocketmine\event\player\PlayerPreLoginEvent;
 
 class XNoNickSpace extends PluginBase implements Listener
 {
+	public Config $config;
+	
     public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->config = new Config($this->getDataFolder()."config.yml", Config::YAML,[
