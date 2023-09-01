@@ -23,6 +23,7 @@ use pocketmine\utils\Config;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerPreLoginEvent;
 
 class XNoNickSpace extends PluginBase implements Listener
@@ -35,11 +36,24 @@ class XNoNickSpace extends PluginBase implements Listener
 		    "language" => "ENG",
 			"kick_ua" => "§f§l§o[§c!§f] §8§l§o§fX§eN²S§r§8§7 :: §f🌟 Вітаємо у нашій чарівній реальності! \n🌈 Для підтримки гармонійної спільноти, ми §cневимушено просимо утримуватися §fвід використання імен користувачів з пробілами чи прихованими смайликами ❌. \nСтворімо простір, де всі зможуть разом насолоджуватися цим досвідом! 🚀",
 			"kick" => "§f§l§o[§c!§f] §8§l§o§fX§eN²S§r§8§7 :: §f🌟 Welcome to our enchanting realm!\n🌈 To foster a harmonious community, we §ckindly request §fthat usernames without spaces and concealed emoticons ❌ be embraced. \nLet's craft a space where all can revel in the experience together! 🚀.",
-			"type_check" => "Expert"]);
+			"type_check" => "Beta",
+			"What_to_replace" => "_space_",
+			"broadcast" => true,]);
     }
+		public function onLogin(PlayerLoginEvent $event){
+		  if (preg_match('/\s|[\x00-\x1F\x7F]|ㅤ/', $event->getPlayer()->getName())) {
+		        if($this->config->get("type_check") == "Beta"){
+                                $nick = preg_replace('/\s+$/', $this->config->get("What_to_replace"), $event->getPlayer()->getName());
+				 $event->getPlayer()->setDisplayName($nick);
+				$event->getPlayer()->setNameTag($nick);
+			     if($this->config->get("broadcast") == "true"){
+				($this->config->get("language") == "ENG") ? $this->getServer()->broadcastMessage("§f§l§o[§c!§f] §8§l§o§fX§eN²S§r§8§7 :: §fPlayer with a space in their name, ".$nick." has joined the server. Please be cautious and verify each character.") : $this->getServer()->broadcastMessage("§f§l§o[§c!§f] §8§l§o§fX§eN²S§r§8§7 :: §fГравець із пробілом у ніку, ".$nick.", приєднався до серверу. Будьте обережні та перевіряйте кожен символ.");
+			     }
+			}
+	        }
+}	
 	
-	
-		public function onLogin(PlayerPreLoginEvent $event){
+		public function onPreLogin(PlayerPreLoginEvent $event){
 		$player = $event->getPlayerInfo();
 		$nick = strtolower($player->getUsername());
 		if($this->config->get("type_check") == "Easy"){
