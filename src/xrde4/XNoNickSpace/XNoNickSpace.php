@@ -43,7 +43,7 @@ class XNoNickSpace extends PluginBase implements Listener
 		public function onLogin(PlayerLoginEvent $event){
 		  if (preg_match('/\s|[\x00-\x1F\x7F]|ㅤ/', $event->getPlayer()->getName())) {
 		        if($this->config->get("type_check") == "Beta"){
-                                $nick = preg_replace('/\s+$/', $this->config->get("What_to_replace"), $event->getPlayer()->getName());
+                                $nick = preg_replace('/\s|[\x00-\x1F\x7F]|ㅤ/', $this->config->get("What_to_replace"), $event->getPlayer()->getName());
 				 $event->getPlayer()->setDisplayName($nick);
 				$event->getPlayer()->setNameTag($nick);
 			     if($this->config->get("broadcast") == "true"){
